@@ -41,9 +41,14 @@ jobs:
         run: | 
           git branch
           git checkout gh-pages
+      - name: refresh sitemap
+        run: |
+          cat ./2.0.1/sitemap.xml ./2.0/sitemap.xml ./1.2.1/sitemap.xml > sitemap.xml
+
       - name: Compress
         run: |
            tar -czf nebula-docs.tar.gz * --exclude=*.tar.gz
+
       - name: Transfer
         # uses: garygrossgarten/github-action-scp@release
         uses: appleboy/scp-action@master
